@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 # =============================================================================
-# master.sh - reproduce the thesis end to end, from raw data to paper/main.pdf
+# master.sh - reproduce the thesis end to end, from raw data to the paper PDF
 # =============================================================================
 # Runs the replication pipeline:
 #   [2] code/2_build_data.do        (Stata)  -> data/1_clean_data/*.dta
 #   [3] code/3_tables.do            (Stata)  -> paper/tables/*.tex
 #   [4] code/4_tables_and_figures.py (Python) -> paper/tables, paper/figures
-#       paper/build.sh              (latexmk) -> paper/main.pdf
+#       paper/build.sh              (latexmk) -> paper/ImmigrationAndEntrepreneurship.pdf
 #
-# Step [1] code/1_download_data.py re-downloads ~900 MB of QCEW data from BLS and
-# is OFF by default (the raw data ships with the package). Enable with DOWNLOAD=1.
+# Step [1] code/1_download_data.py downloads ~900 MB of QCEW data from BLS and is OFF by
+# default. The data/ directory is NOT distributed with this repo (see README "Data"), so on
+# a fresh clone enable the download with DOWNLOAD=1 and place the manual raw inputs first.
 #
 # Usage:
-#   bash master.sh                 # build from the raw data already in data/
+#   bash master.sh                 # build from raw inputs you have placed in data/
 #   DOWNLOAD=1 bash master.sh      # also re-download + reprocess QCEW first
 #   STATA="/path/to/stata" bash master.sh   # override the Stata executable
 #
@@ -64,7 +65,7 @@ echo "### [4/4] Generating Python tables + figures -> paper/{tables,figures}/ ..
 python code/4_tables_and_figures.py
 
 # --- Build the paper --------------------------------------------------------
-echo "### Building paper -> paper/main.pdf ..."
+echo "### Building paper -> paper/ImmigrationAndEntrepreneurship.pdf ..."
 bash paper/build.sh
 
-echo "### Done. Output: paper/main.pdf   (Stata batch logs in logs/)"
+echo "### Done. Output: paper/ImmigrationAndEntrepreneurship.pdf   (Stata batch logs in logs/)"
