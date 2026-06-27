@@ -1,0 +1,19 @@
+\begin{table}[htbp] \centering
+\caption{Effects on Business Dynamics}
+\label{tab:main}
+\newsavebox{\boxmain} \newlength{\tablemain}
+\savebox{\boxmain}{\begin{tabular}{lcccc} \toprule
+& (1) & (2) & (3) & (4)  \\ \cmidrule(lr){2-5}
+                    &\multicolumn{1}{c}{Wages}&\multicolumn{1}{c}{Firm Size}&\multicolumn{1}{c}{Entry Rate}&\multicolumn{1}{c}{Exit Rate}\\
+\midrule
+Log(Immigration)    &       0.080\sym{***}&       0.101\sym{***}&       0.183\sym{***}&       0.117\sym{***}\\
+                    &     (0.006)         &     (0.006)         &     (0.051)         &     (0.019)         \\
+\midrule
+N                   &       12388         &       18492         &       14923         &       14918         \\
+F-stat              &       368.2         &       495.7         &       450.7         &       450.3         \\
+P-value             &       0.000         &       0.000         &       0.001         &       0.000         \\
+\bottomrule \end{tabular} }
+\settowidth{\tablemain}{\usebox{\boxmain}}
+\usebox{\boxmain} \vspace{0.5em} 
+\parbox{\tablemain}{\footnotesize \textit{Notes:} * p$<$0.10, ** p$<$0.05, *** p$<$0.01. Standard errors clustered at the state-level. Cragg-Donald Wald F-statistic reported. Column (1) \& (2) are logged, (3) \& (4) are past 5-year averages. Population is past 5-year average except 2010 population which is the average from 2006 to 2009. Wages data only covers 1990-2010. All columns include State and Time FE.}
+ \end{table}

@@ -1,0 +1,52 @@
+
+    \subsection{Age-1 versus Age-2 Firms}
+
+    I define \textit{age-1} firms as new entrants, these are entrepreneurs who are still in the mandatory production period. \textit{Age-2} firms are individuals in their second period of production, they have observed their talent draw and choose not to exit, and they received their first transitory shock. The mean firm size will be given by:
+    \begin{equation}
+        \mathbb{E}[\ell \mid n, k, \text{age} = 1] = \int_{\underline{\theta}}^{\bar{\theta}} \ell^*(\theta, k; w) \, dF_n(\theta) \label{eq:age1_mean}
+    \end{equation}
+    \begin{equation}
+       \mathbb{E}[\ell \mid n, k, \text{age} = 2] =  \frac{\displaystyle\int_{\theta^*(k,w)}^{\bar{\theta}} [1 - H(z^*(\theta,k,w))] \cdot \mathbb{E}[\ell^*(z\theta, k; w) \mid z \geq z^*] \, dF_n(\theta) }{\displaystyle\int_{\theta^*(k,w)}^{\bar{\theta}} [1 - H(z^*(\theta,k,w))] \, dF_n(\theta) } \label{eq:age2_mean}
+    \end{equation}
+    The main takeaway is that, for age-1 firms, one averages over the entire talent distribution. While for age-2 firms, the average is truncated above $\theta^*$. This truncation is simply the selection of entrepreneurs with low-talent draws exiting the market. Additionally, the term is also weighted by the probability of surviving one period of transitory shocks.
+
+    \subsection{Selection Gap}
+
+    I define the selection gap as follows:
+    \begin{equation}
+        \Delta(n, k; w) \equiv \mathbb{E}[\ell \mid n, k,\, \text{age} = 2] - \mathbb{E}[\ell \mid n, k,\, \text{age} = 1]
+    \end{equation}
+    This gap can be decomposed into two effects:
+    \begin{equation}
+\Delta = \underbrace{\left( \mathbb{E}[\ell \mid \text{age}=2] -  \mathbb{E}[\ell \mid \theta \geq \theta^*,\, \text{age}=1]\right)}_{\text{shock-survival effect}} + \underbrace{\left( \mathbb{E}[\ell \mid \theta \geq \theta^*,\, \text{age}=1] -  \mathbb{E}[\ell \mid \text{age}=1]\right)}_{\text{truncation effect}},
+\end{equation}
+    The counterfactual term $\mathbb{E}[\ell \mid \theta \geq \theta^*,\, \text{age}=1]$ captures the mean-size of age-1 firms if only the talent draws above the $\theta^*$ cut-off were realized. The truncation effect captures the removal of the low-talent draw of entrants. These are individuals who choose to enter, receive a bad draw of talent, produce for the mandatory one-period, and exit at the end of the period. The shock-survival effect captures the additional exit due to transitory shocks, which also disproportionately affects low-talent incumbents.
+
+    \subsection{Formal Proposition}
+    To isolate the role of sub-threshold mass, I formalize the comparison through a common-component assumption: the two groups share identical conditional distributions above and below the exit threshold $\theta^{*}$, and differ only in the probability mass assigned to each region. While strong, this assumption allows me to neatly pin down what the selection gap identifies. The cutoff $\theta^{*}$ is endogenous, determined by wages and capital, and sits in the interior of the talent distribution. This selection gap is informative about the talent distribution of a group $n_j$: $F_{n_{j}}(\theta^{*})$. In the empirical work below, I restrict attention to the top capital bracket, where the capital constraint is slack, to minimize contamination from other sources of heterogeneity.
+
+    
+    \begin{proposition}[Selection Gap Identifies Sub-Threshold Mass]\label{prop:selgap}
+Fix a capital bracket $k$ and wage $w$, and let $\theta^{*} \equiv \theta^{*}(k; w)$. Consider two groups $(n_1, n_2)$ whose talent distributions admit the common-component representation
+\begin{equation}
+F_{n_j}(\theta) = p_j\, G_L(\theta) + (1 - p_j)\, G_H(\theta), \qquad j \in \{1, 2\},
+\label{eq:mixture}
+\end{equation}
+where $G_L$ and $G_H$ are distributions supported on $[\underline{\theta}, \theta^{*})$ and $[\theta^{*}, \bar{\theta}]$ respectively, common across groups, and $p_1 > p_2$. That is, the two groups share identical conditional distributions above and below $\theta^{*}$, and differ only in the below threshold probability $p_j = F_{n_j}(\theta^{*})$. Then:
+\begin{enumerate}
+    \item $\Delta(n_1, k; w) > \Delta(n_2, k; w)$: the group with more sub-threshold mass has a larger selection gap. Its higher mass of low-talent draws depresses the age-1 mean, while the age-2 mean is insulated by the truncation and shock-survival effects.
+    
+    \item This difference is weakly increasing in $k$ and is maximized on the set of capital levels for which the constraint is slack for all talent draws (i.e., $\theta^{c}(k; w) \geq \bar{\theta}$). When $k$ is high, the age-2 mean fully reflects the talent advantage of above-threshold incumbents. When $k$ is low, the constraint caps firm size at $\lambda k$, compressing the age-2 mean and dampening the gap for both groups.
+\end{enumerate}
+\end{proposition}
+    
+    I provide a formal proof of this proposition in Appendix Section \ref{app:proof}. This selection gap can be interpreted as a measure of the mass/amount of low-talent draws. Entrepreneurs who choose to start a business, operate for 1 period, realize they have a low-managerial talent and then exit the market. This frequency of low-talent draws depends on the mass that the group's talent distribution places below the threshold.
+
+    \subsection{Evidence}
+    
+    I explicitly test this proposition using simulated data in Figure \ref{fig:gap_simulation}. I simulated two periods for two groups with the following distributions:
+    \[\text{Group 1} \sim \text{LogNormal}(\mu = 2, \sigma^2 = 16), \quad \text{Group 2} \sim \text{LogNormal}(\mu = 2, \sigma^2 = 9)\]
+
+    Both groups have the same mean, but group 1 has a fatter left tail based on its variance, which translates into more mass below any given threshold. They also have the same capital distribution (constraints) and face the same wages. As predicted, group 1 has a larger selection gap, which is the most visible/prominent in the top capital class.
+
+    I now move towards real-world data to infer how different the relative talent distributions of native versus immigrants are. In table \ref{tab:selection_gap}, I look at firms in the top capital bracket, i.e., firms that started with more than \$1,000,000 in startup capital, where one can safely assume that the capital constraint on labor demand is slack. Additionally, I assume one model period is equal to two years in the real world. This approach is consistent if one believes that it takes time to learn about one's ability as a manager. I see that native entrepreneurs have a much larger selection gap than immigrant entrepreneurs (5.57 vs 3.83). In Figure \ref{fig:gap_data}, I present the same selection gap but across different capital classes. One can infer that natives have more sub-threshold mass than their immigrant counterparts. In simpler words, a native is more likely to start a business based on expected profits, get a low-talent draw, and exit to become a worker. The selection gap is analogous to a forecast error. My findings are consistent with the idea of positive selection of immigrants on managerial talent. However, this evidence should be interpreted as identifying differences in mass below the endogenous threshold $\theta^{*}$ (marginal entrants) rather than as a claim about the asymptotic shape of the talent distribution near $\underline{\theta}$. Nevertheless, I can use it to motivate and infer the characteristics of arriving immigrants in the United States and their general equilibrium effects on the local economy.

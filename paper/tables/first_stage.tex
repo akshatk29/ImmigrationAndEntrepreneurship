@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{IV First Stage}
+\label{tab:firststage}
+\begin{tabular}{l*{3}{c}}
+\toprule
+& \multicolumn{3}{c}{Non-European Migration} \\
+\cmidrule(lr){2-4}
+& (1) & (2) & (3) \\
+\midrule
+Immigration Shock&       2.090\sym{***}&       2.094\sym{***}&       2.096\sym{***}\\
+            &     (0.053)         &     (0.056)         &     (0.037)         \\
+\midrule
+N           &       21854         &       21847         &       21854         \\
+R$^2$       &       0.818         &       0.823         &       0.793         \\
+P-value     &       0.000         &       0.000         &       0.000         \\
+Geography FE&       State         &       State         &      County         \\
+Time FE     &         Yes         &         Yes         &         Yes         \\
+State-Time FE&          No         &         Yes         &          No         \\
+\bottomrule
+\multicolumn{4}{@{}l@{}}{\footnotesize \textit{Notes:} * p$<$0.10, ** p$<$0.05, *** p$<$0.01.}
+\\
+\multicolumn{4}{@{}l@{}}{\footnotesize Standard errors clustered at the state level.}
+\\
+\end{tabular}
+\end{table}

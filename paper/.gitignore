@@ -1,0 +1,2 @@
+# LaTeX build artifacts (aux files are routed here by build.sh)
+build/

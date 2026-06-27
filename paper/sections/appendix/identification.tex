@@ -1,0 +1,117 @@
+
+    This section describes in detail how the immigration instruments from \cite{MigrantsAncestorsandInvestments} are constructed, along with the identification strategy used in \cite{ImmigrationInnovationGrowth} using said instruments.
+%----------------------------------------------------------------------
+\subsection{Target Estimating Equation}
+%----------------------------------------------------------------------
+
+    \begin{equation}\label{eq:target}
+     Y_{d,t} \;=\; \delta_t + \delta_{s(d)} + \beta \cdot \text{Immigration}_{d,t} + \varepsilon_{d,t}
+    \end{equation}
+
+\noindent\textbf{Variable definitions:}
+\begin{itemize}
+    \item $Y_{d,t}$: Outcome variable in county $d$ from period $t{-}1$ to $t$ (five-year intervals)
+    \item $\text{Immigration}_{d,t}$: Number of migrants (in thousands) flowing into county $d$ between $t{-}1$ and $t$
+    \item $\delta_t, \delta_{s(d)}$: Time and State fixed effects
+\end{itemize}
+
+
+%----------------------------------------------------------------------
+\subsection{Step 1: Instrumenting for Pre-Existing Ancestry}
+%----------------------------------------------------------------------
+
+For each time $t$, estimate the following at the origin-country $\times$ destination-county level:
+
+\begin{equation}\label{eq:step1}
+A_{o,d,t} \;=\; \delta_{o,r(d)} + \delta_{c(o),d} + \delta_t + X'_{o,d}\theta
++ \sum_{\tau=1880}^{t} a_{r(d),\tau}\; I_{o,-r(d),\tau}\;\frac{I_{\text{Europe},d,\tau}}{I_{\text{Europe},\cdot,\tau}}
++ v_{o,d,t}
+\end{equation}
+
+\noindent\textbf{Variable definitions:}
+\begin{itemize}
+    \item $A_{o,d,t}$: Number of residents in county $d$ who claim ancestry from origin country $o$ at time $t$ (constructed from IPUMS census data)
+    \item $o$: Foreign country of origin
+    \item $d$: US destination county
+    \item $t$: End year of a five-year interval
+    \item $r(d)$: Census division (one of nine US regions, each comprising $\sim$5 adjacent states) in which county $d$ is located
+    \item $c(o)$: Continent of origin country $o$
+    
+    \bigskip
+    \textit{Instruments (Push $\times$ Pull interaction):}
+    \item $I_{o,-r(d),\tau}$: \textbf{Push factor} --- total number of migrants from origin $o$ at historical time $\tau$ who settled in counties \emph{outside} the census division $r(d)$ where $d$ is located. The regional leave-out ensures the push factor is not contaminated by local demand conditions in $d$'s region.
+    \item $\dfrac{I_{\text{Europe},d,\tau}}{I_{\text{Europe},\cdot,\tau}}$: \textbf{Pull factor} --- share of all European migrants at time $\tau$ who settled in county $d$. Uses European migrants (a different group) to measure $d$'s generic attractiveness, avoiding bilateral endogeneity with non-European origin $o$.
+    \item $a_{r(d),\tau}$: Coefficients to be estimated; allowed to vary by destination region and 
+    
+    \bigskip
+    \textit{Controls and fixed effects:}
+    \item $\delta_{o,r(d)}$: Origin country $\times$ destination census division interacted fixed effects.
+    \item $\delta_{c(o),d}$: Origin continent $\times$ destination county interacted fixed effects. 
+    \item $\delta_t$: Time fixed effects.
+    \item $X'_{o,d}$: Time-invariant bilateral controls, including:
+        \begin{itemize}
+            \item Geographic distance between $o$ and $d$
+            \item Latitude distance between $o$ and $d$
+        \end{itemize}
+\end{itemize}
+
+\bigskip
+\noindent Predicted ancestry is then constructed using only the push--pull interactions, residualized against all controls:
+
+\begin{equation}\label{eq:predancestry}
+\hat{A}_{o,d,t} \;=\; \sum_{\tau=1880}^{t} \hat{a}_{r(d),\tau}\;\left(I_{o,-r(d),\tau}\;\frac{I_{\text{Europe},d,\tau}}{I_{\text{Europe},\cdot,\tau}}\right)^{\!\perp}
+\end{equation}
+
+\noindent where $\hat{a}_{r(d),\tau}$ are the estimated coefficients from \eqref{eq:step1} and $\perp$ denotes that the push--pull interaction has been residualized (orthogonalized) with respect to all controls and fixed effects in \eqref{eq:step1}.
+
+%----------------------------------------------------------------------
+\subsection{Step 2: Predicting Immigration (First Stage)}
+%----------------------------------------------------------------------
+
+Using predicted ancestry from Step 1, estimate at the origin--county level:
+
+\begin{equation}\label{eq:step2}
+I_{o,d,t} \;=\; \delta_{o,r(d)} + \delta_{c(o),d} + \delta_t + X'_{o,d}\,\theta 
++ b_t \cdot \left[\hat{A}_{o,d,t-1} \times \tilde{I}_{o,-r(d),t}\right] + u_{o,d,t}
+\end{equation}
+
+\noindent\textbf{Variable definitions:}
+\begin{itemize}
+    \item $I_{o,d,t}$: Actual number of migrants from origin $o$ to county $d$ between $t{-}1$ and $t$
+    \item $\hat{A}_{o,d,t-1}$: Predicted ancestry from equation \eqref{eq:predancestry}, lagged one period (the ``share'' in the shift-share)
+    \item $\tilde{I}_{o,-r(d),t}$: Scaled contemporaneous push factor, defined as:
+    \[
+        \tilde{I}_{o,-r(d),t} \;=\; I_{o,-r(d),t} \;\cdot\; \frac{I_{\text{Europe},r(d),t}}{I_{\text{Europe},-r(d),t}}
+    \]
+    where the scaling by $I_{\text{Europe},r(d),t}/I_{\text{Europe},-r(d),t}$ corrects for differences in region sizes induced by the leave-out (the ``shift'' in the shift-share)
+    \item $b_t$: Time-varying coefficient on the shift-share interaction
+    \item $\delta_{o,r(d)},\;\delta_{c(o),d},\;\delta_t$: Origin$\times$region, continent$\times$county, and time fixed effects
+    \item $X'_{o,d}$: Bilateral controls (distance, latitude distance)
+\end{itemize}
+
+\bigskip
+\noindent\textbf{County-level instrument:} Summing over all foreign origins $o$:
+
+\begin{equation}\label{eq:instrument}
+\boxed{\hat{I}_{\cdot,d,t} \;=\; \sum_{o}\; \hat{b}_t \cdot \left[\hat{A}_{o,d,t-1} \;\times\; \tilde{I}_{o,-r(d),t}\right]}
+\end{equation}
+
+\noindent This is the excluded instrument for $\text{Immigration}_{d,t}$ in equation \eqref{eq:target}.
+%----------------------------------------------------------------------
+\subsection{Exclusion Restriction}
+%----------------------------------------------------------------------
+
+A sufficient condition for the validity of the instrument $\hat{I}_{\cdot,d,t}$ is that predicted ancestry $\hat{A}_{o,d,t-1}$ is exogenous in equation \eqref{eq:target}. Given the construction in \eqref{eq:predancestry}, this requires:
+
+\begin{equation}\label{eq:exclusion}
+\boxed{I_{o,-r(d),\tau}\;\cdot\;\frac{I_{\text{Europe},d,\tau}}{I_{\text{Europe},\cdot,\tau}} \;\;\perp\;\; \varepsilon_{d,t} \qquad \forall\; o,\;\; \forall\; \tau \leq t}
+\end{equation}
+
+\bigskip
+\noindent The historical (pre-1975) interaction of
+\begin{enumerate}
+    \item the \textbf{push factor} --- migration from origin $o$ to US regions \emph{other than} $d$'s census division at historical time $\tau$ ($I_{o,-r(d),\tau}$), with
+    \item the \textbf{pull factor} --- the contemporaneous attractiveness of county $d$ to \emph{European} migrants at time $\tau$ ($I_{\text{Europe},d,\tau}/I_{\text{Europe},\cdot,\tau}$),
+\end{enumerate}
+must be uncorrelated with any confounding factors that affect our outcome variable in \eqref{eq:target}.
+

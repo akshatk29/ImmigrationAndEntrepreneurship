@@ -1,0 +1,20 @@
+\begin{table}[htbp] \centering
+\caption{Effects on Business Dynamics with Population Change}
+\label{tab:pop} \newsavebox{\boxpop} \newlength{\tablepop}
+\savebox{\boxpop}{\begin{tabular}{lcccc} \toprule
+& (1) & (2) & (3) & (4)  \\ \cmidrule(lr){2-5}
+                    &\multicolumn{1}{c}{Wages}&\multicolumn{1}{c}{Firm Size}&\multicolumn{1}{c}{Entry Rate}&\multicolumn{1}{c}{Exit Rate}\\
+\midrule
+Log(Immigration)    &       0.076\sym{***}&       0.109\sym{***}&       0.230\sym{***}&       0.105\sym{***}\\
+                    &     (0.005)         &     (0.012)         &     (0.050)         &     (0.035)         \\
+Population          &       0.000         &      -0.000         &      -0.000         &       0.000         \\
+                    &     (0.000)         &     (0.000)         &     (0.000)         &     (0.000)         \\
+\midrule
+N                   &       12388         &       18489         &       14923         &       14918         \\
+F-stat              &      1721.1         &      2034.1         &      2140.3         &      2137.3         \\
+P-value             &       0.000         &       0.000         &       0.000         &       0.004         \\
+\bottomrule \end{tabular} }
+\settowidth{\tablepop}{\usebox{\boxpop}}
+\usebox{\boxpop} \vspace{0.5em} 
+\parbox{\tablepop}{\footnotesize \textit{Notes:} * p$<$0.10, ** p$<$0.05, *** p$<$0.01. Standard errors clustered at the state-level. Cragg-Donald Wald F-statistic reported. Column (1) \& (2) are logged, (3) \& (4) are past 5-year averages. Population is past 5-year average except 2010 population which is the average from 2006 to 2009. All columns include State and Time FE.}
+ \end{table}

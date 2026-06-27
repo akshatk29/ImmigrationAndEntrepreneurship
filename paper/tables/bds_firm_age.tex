@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{Heterogeneous Effects by Firm Age} \label{tab:bdsage}
+\begin{tabular}{l*{4}{c}}
+\hline
+\hline
+& (1) & (2) & (3) & (4) \\
+\cmidrule(lr){2-5}
+            &\multicolumn{1}{c}{New}&\multicolumn{1}{c}{Young}&\multicolumn{1}{c}{Medium}&\multicolumn{1}{c}{Old}\\
+\hline \multicolumn{5}{l}{\textit{Panel A: 5-year Average Exit Rate}}\\ \hline
+Log(Immigration)&                     &       0.018         &       0.078\sym{***}&       0.076\sym{***}\\
+            &                     &     (0.045)         &     (0.020)         &     (0.011)         \\
+\hline
+N           &                     &       15767         &        8684         &        7110         \\
+F-stat      &                     &       483.3         &       327.3         &       250.0         \\
+P-value     &                     &       0.680         &       0.000         &       0.000         \\
+
+\hline \multicolumn{5}{l}{\textit{Panel B: Log of 5-year Firm Size}} \\
+\hline
+Log(Immigration)&       0.095\sym{***}&       0.096\sym{***}&       0.107\sym{***}&       0.114\sym{***}\\
+            &     (0.006)         &     (0.006)         &     (0.007)         &     (0.008)         \\
+\hline
+N           &       18048         &       18444         &       18374         &       15400         \\
+F-stat      &       502.4         &       505.1         &       505.1         &       413.8         \\
+P-value     &       0.000         &       0.000         &       0.000         &       0.000         \\
+\hline \hline
+\multicolumn{5}{@{}l@{}}{\footnotesize  \textit{Notes:} * p$<$0.10, ** p$<$0.05, *** p$<$0.01. Standard errors clustered at the}
+\\
+\multicolumn{5}{@{}l@{}}{\footnotesize state-level.  Cragg-Donald Wald F-statistic reported Young: 1 to 5 years, }
+\\
+\multicolumn{5}{@{}l@{}}{\footnotesize Medium: 6 to 10 years, and Old: 11+ years. All columns include State}
+\\
+\multicolumn{5}{@{}l@{}}{\footnotesize and Time FE.}
+\\
+\end{tabular}
+\end{table}

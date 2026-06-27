@@ -1,0 +1,9 @@
+# Python dependencies for the replication package (code/)
+# Install with:  pip install -r requirements.txt
+pandas
+numpy
+matplotlib
+plotly
+kaleido        # static (PNG) export of the Plotly choropleth maps
+linearmodels   # only the (unused) capital/education table in 4_tables_and_figures.py
+openpyxl       # reading the QCEW .xlsx files in 1_download_data.py

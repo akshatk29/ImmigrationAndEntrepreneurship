@@ -1,0 +1,119 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+\usepackage{appendix}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage[shortlabels]{enumitem}  % For changing enum label
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{threeparttable}
+
+% --- Config ---
+\doublespacing
+\newtheorem{proposition}{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\theoremstyle{definition}   % upright body, bold header
+\newtheorem{assumption}{Assumption}
+\newcommand{\sym}[1]{{#1}}
+\definecolor{accentblue}{RGB}{41,98,255}       % Vivid blue
+
+% Configure hyperref for blue links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=red,
+    urlcolor=red,
+    citecolor=accentblue
+}
+% --- Title ---
+\title{Importing Talent? Evidence from  \\
+        Immigrant-Owned Businesses in the U.S.}
+\author{
+  Akshat Kumar\thanks{Vancouver School of Economics, University of British Columbia. Email: \texttt{\textcolor{blue}{akshatk2902@gmail.com}}. \\ I would like to thank my advisors Gorkem Bostanci and Viktoria Hnatkovska for their support and guidance. I am grateful to my parents for teaching me the value of curiosity and intellectual pursuit. I thank Réka Juhász for sparking and supporting my interests in academic research. I thank the faculty at the VSE for their helpful comments and feedback. Finally, I would like to thank my peers in the Honours program for keeping me motivated throughout this project. I used AI to aid in writing code and formatting the manuscript for this project. All errors are mine.}
+}
+\date{\today}
+
+
+% ============================================================
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+\begin{abstract}
+\noindent
+    This paper studies how immigrants differ from natives in entrepreneurial talent and how immigration affects business dynamism in the United States. I develop a span-of-control model with talent heterogeneity across nativity groups, pre-entry talent uncertainty, and capital constraints, which helps identify the shape of underlying managerial talent. Using microdata from the 2007 Survey of Business Owners, I find that immigrants are positively selected on managerial talent at the margin, with fewer low-talent entrants than natives. I use an instrumental variable approach to show that a 1\% increase in immigration to a US county raises average wages by 0.08\%, firm size by 0.1\%, and raises both entry and exit rates over a five-year period. I interpret these findings with my model framework and show that the immigrants arriving in the US from 1975 to 2010 were positively selected on managerial talent relative to the existing native population.
+    
+\medskip
+\noindent\textbf{Keywords:} migration, entrepreneurship, theoretical model, dynamism. \\
+\noindent\textbf{JEL Codes:} D21, J24, J61, L11, L26
+\end{abstract}
+
+\newpage
+
+\section{Introduction} \label{sec:intro}
+\input{sections/introduction}
+
+
+\section{Literature Review} \label{sec:lit}
+\input{sections/lit_review}
+
+\section{Data} \label{sec:data}
+\input{sections/data}
+
+\section{Theoretical Model} \label{sec:model}
+\input{sections/model}
+
+\section{Model Predictions and Evidence} \label{sec:cross_section}
+\input{sections/cross_section}
+
+\section{Empirical Results} \label{sec:results}
+\input{sections/estimation_results}
+
+\section{Discussion} \label{sec:discussion}
+% \input{sections/discussion}
+\input{sections/new_discussion}
+
+\section{Conclusion}  \label{sec:conclusion}
+\input{sections/conclusion}
+
+
+
+
+\newpage
+\clearpage
+\bibliographystyle{aer}
+\bibliography{sources}
+\appendix
+
+\newpage
+\appendix
+\section{Tables and Figures}
+\input{sections/tables_figures}
+
+\clearpage
+\input{sections/appendix/proof}
+
+
+
+\clearpage
+\section{Identification Strategy}  \label{identification_appendix}
+\input{sections/appendix/identification}
+
+\end{document}

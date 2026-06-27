@@ -1,0 +1,34 @@
+# Old/Deprecated files
+_old/
+
+# LaTeX build artifacts (paper/build.sh routes aux files here)
+paper/build/
+
+# Ignore the data dirs
+data
+
+# Stata batch logs (regenerated on every run by master.sh)
+logs/
+*.log
+
+# Claude specific files
+.claude/
+
+# Python files
+__pycache__/
+env/
+venv/
+
+# Stata temporary files
+*.dta~
+*.smcl~
+*.log~
+*.tmp
+*.aux~
+*.out~
+*.stswp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+

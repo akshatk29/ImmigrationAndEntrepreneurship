@@ -1,0 +1,47 @@
+% -------------------------------------------------------
+% Required packages: booktabs, threeparttable, caption
+% -------------------------------------------------------
+\begin{table}[htbp]
+\centering
+\caption{Startup Capital and Owner Education}
+\label{tab:capital_educ}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & No FE & State FE & Sector FE & Both FE \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: All Owners}} \\[3pt]
+\quad educ1 & $0.5148^{***}$ & $0.1141^{***}$ & $0.1205^{***}$ & $0.1212^{***}$ \\
+ & $(0.0046)$ & $(0.0041)$ & $(0.0026)$ & $(0.0026)$ \\
+\midrule
+\quad Observations & 10,981,213 & 10,981,213 & 10,981,213 & 10,981,213 \\
+\quad $R^{2}$ & 0.5205 & 0.0207 & 0.0975 & 0.0987 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: Native Owners}} \\[3pt]
+\quad educ1 & $0.5032^{***}$ & $0.0774^{***}$ & $0.0945^{***}$ & $0.0978^{***}$ \\
+ & $(0.0069)$ & $(0.0069)$ & $(0.0050)$ & $(0.0048)$ \\
+\midrule
+\quad Observations & 7,824,684 & 7,824,684 & 7,824,684 & 7,824,684 \\
+\quad $R^{2}$ & 0.5670 & 0.0079 & 0.0809 & 0.0829 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel C: Immigrant Owners}} \\[3pt]
+\quad educ1 & $0.5564^{***}$ & $0.0790^{***}$ & $0.1200^{***}$ & $0.1193^{***}$ \\
+ & $(0.0051)$ & $(0.0154)$ & $(0.0127)$ & $(0.0132)$ \\
+\midrule
+\quad Observations & 1,174,712 & 1,174,712 & 1,174,712 & 1,174,712 \\
+\quad $R^{2}$ & 0.5688 & 0.0116 & 0.1488 & 0.1515 \\
+\midrule
+State FE & No & Yes & No & Yes \\
+Sector FE & No & No & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Weighted OLS using survey weights (\texttt{tabwgt}).
+Standard errors in parentheses, clustered at the state level.
+\texttt{scamount} values 0, 9, and `A' excluded.
+$^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,128 @@
+
+    In this section, I build the framework and key equation for a partial equilibrium model where wages are taken exogenously. The model will be in the form of a Span-of-Control model where individuals are divided into workers or managers/entrepreneurs who run businesses. I first provide the set-up of the model, then I move on to production and profit maximization conditions. Finally, I derive the conditions for who starts a business, who remains in business and who exits to become a worker.
+
+\subsection{Background}
+
+    I extend the classic \cite{LucasModel} Model to account for four key frictions from the real world: (i) Talent heterogeneity among native versus immigrant individuals, (ii) Talent uncertainty before entry, (iii) Implicit cost of observing talent, and (iv) Capital constraint environment. Similar to the canonical Lucas model, my model will be a single-period model where, at the end of a period, every individual will be characterized as either a worker or an entrepreneur. However, contrary to the existing model, individuals are not homogeneous at the beginning of a period. Rather, individuals are either an incumbent entrepreneur or a worker, which is taken as given. 
+
+\subsection{Individual Characteristics}
+
+    Individuals in the economy are characterized by a type $(n_i, k_i)$ where $n_i \in \{N, I\}$ denotes natives or immigrants, and $k_i \in \mathbb{R}^+$ denotes access to start-up capital. Additionally, each individual is a worker or entrepreneur. 
+
+\subsection{Talent}
+
+    Individuals are not aware of their managerial talent $\theta$ before entry into entrepreneurship. If the individual chooses to start a firm, they draw talent from a distribution depending on their nativity:
+    \begin{equation}
+        \theta \sim F_n(\theta), \, \, n \in \{N, I \}
+    \end{equation}
+
+    \begin{assumption}[Talent Distributions] \label{assum:talent_dist}
+        For each n, the talent distribution $F_n$ is continuous with a support of $[\underline{\theta}, \bar{\theta}]$ and strictly positive density $f_n(\theta) > 0$ in the interior. There are no parametric restrictions on the distributions. These distributions are common knowledge.
+    \end{assumption}
+        
+    \begin{assumption}[Independent Draws] \label{assum:draws}
+        Talent draws for an individual are i.i.d. across various time periods/entry attempts. Previous entry contains no information about future talent draws.
+    \end{assumption}
+
+    Assumption 2 is consistent if we were to think of these talent draws as business idea draws. Additionally, if we imagine a failed/past entrepreneur is setting up a new firm in a different sector, their \textit{managerial talent} ($\theta$) will likely be uncorrelated. Thus, we can argue that i.i.d. talent draws are a reasonable assumption. 
+
+\subsection{Transitory Productivity Shocks}
+
+    At the start of every period, incumbent entrepreneurs face a temporary multiplicative shock $z$ to their talent/production. These shocks are i.i.d. drawn from a distribution $H(z)$ on $\mathbb{R}^+$, with mean $\mathbb{E}[z] = 1$, and continuous density $h(z) > 0$. These shocks are independent of any individual characteristics or time, they only apply to incumbent firms. We can think of these shocks capturing various real-world concepts, including business cycles, retirements, or increased competition.  
+    
+\subsection{Production}
+
+    Firms follow a span-of-control production method, using $\ell$ units of labor with effective productivity $\Tilde{\theta}$ returns $y$ units of output:
+    \begin{equation}
+        y = \Tilde{\theta} \ell^\alpha
+    \end{equation}
+    where $\alpha \in (0,1)$ is the span-of-control parameter which represents the decreasing returns to labor for an entrepreneur. The effective productivity is equal to the talent draw for an entrant $\Tilde{\theta} = \theta$, while for an incumbent it includes the transitory shock such that $\Tilde{\theta} = z \theta$.
+
+\subsection{Entrepreneurs Problem}
+
+    An entrepreneur chooses an amount of labor $\ell$ that maximizes their profit given their effective productivity $\Tilde{\theta}$, and the prevailing wage $w$. However, they are constrained in their labor demand by how much capital $k$ they have access to. The maximum labor they can hire is given by:
+    \begin{equation}
+        \Bar{l}(k) = \lambda k
+    \end{equation}
+    where $\lambda > 0$ represents the tightness of financial markets. Our entrepreneur's problem can be written as:
+    \begin{equation}
+        \pi(\Tilde{\theta}, k ; w) = \max_{\ell >0} \left\{ \Tilde{\theta} \ell^\alpha - w \ell \right\} \quad \text{s.t.} \quad \ell \leq \lambda k
+    \end{equation}
+    Solving this yields two labor demand equations, one for a constrained firm and another for the unconstrained one:
+    \begin{equation} \label{eq:labordemand}
+        \ell^*(\Tilde{\theta}, k ; w) = \begin{cases}
+                \ell^*_u(\Tilde{\theta}; w) = \left(\frac{\alpha \Tilde{\theta}}{w}\right)^{\frac{1}{1-\alpha}} & \text{if }\Tilde{\theta} \leq \theta^c(k; w) \\
+                \ell^*_c(\Tilde{\theta}, k ; w) = \lambda k & \text{if }\Tilde{\theta} > \theta^c(k; w)
+            \end{cases}
+    \end{equation}
+    where $\theta^c(k; w)$ is the talent cut-off level for determining whether an entrepreneur is constrained. This is given by:
+    \begin{equation}
+             {\theta^c}(k, w) = \left(\frac{w(\lambda k)^{1-\alpha}}{\alpha}\right)
+    \end{equation}
+    Notice that, as expected, this talent cut-off is monotonically increasing with $k$, increasing $k$ will lead to higher levels of $\Tilde{\theta}$ that will be unconstrained. Additionally, we also see that the unconstrained labor demand is increasing with talent. 
+    The realized profits will be given by:
+    \begin{equation}
+\pi(\tilde{\theta}, k; w) = \begin{cases}
+(1-\alpha) \left( \dfrac{\alpha}{w} \right)^{\frac{\alpha}{1-\alpha}} \tilde{\theta}^{\frac{1}{1-\alpha}} & \text{if } \tilde{\theta} \leq {\theta^c}(k,w), \\
+\tilde{\theta}(\lambda k)^\alpha - w\lambda k & \text{if } \tilde{\theta} > {\theta^c}(k,w).
+\end{cases}
+\end{equation}
+
+\subsection{Timing within a Period}
+
+Each period proceeds as follows:
+\begin{enumerate}[1)]
+\item Each incumbent draws $z \sim H$. Incumbents with $\pi(z\theta, k; w) < w$ exit and become workers.
+
+\item All workers observe their type $(n_i, k_i)$ but not their talent. They choose whether to enter entrepreneurship or remain workers earning $w$.
+
+\item New entrants draw $\theta$ from their talent distribution $F_{n}$ and must operate for one period, hiring labor and producing output regardless of their $\theta$ draw.
+
+\item Surviving incumbents (those not exiting in step 1) produce with effective productivity $z\theta$.
+
+\item   At the end of the period, new entrants choose whether to remain in business. Those with $\pi(\theta, k; w) \geq w$ become incumbents next period. Otherwise, they exit and become workers next period.
+\end{enumerate}
+\subsection{Entry Decision}
+
+    Under the mandatory production condition, the value from entry will be given by:
+    \begin{equation}
+        V^E(n,k;w) = \int_{\underline{\theta}}^{\Bar{\theta}}  \pi(\theta, k; w) \, dF_{n}(\theta) 
+    \end{equation}
+    An individual will choose to enter if and only if:
+    \begin{equation}
+        V^E(n,k;w) \geq w
+    \end{equation}
+    Notice that this entry condition is an expectation over the talent distribution, as individuals are not aware of their talent draw before entry. Let us also define an entry set, which is the group of individuals who will start a business:
+    \begin{equation}
+\mathcal{E}(w) = \left\{ (n, k) : V^E(n,k;w)\geq w \right\}
+\end{equation}
+
+\subsection{Exit Thresholds}
+\subsubsection{New Entrants}
+    For new entrants, at the start of a new period, they can choose to enter the next period as an incumbent or close down shop. They can choose to start a new business in the next period and get a new talent draw. This exit threshold will equal the talent level for which profits were equal to the equilibrium wage:
+     \begin{equation} \label{eq:wage}
+            \theta^*(k; w) = \begin{cases}
+             \theta^*_u(w) =  \frac{w}{\alpha^\alpha (1-\alpha)^{1-\alpha}} \\
+             \theta^*_c(k, w) = \frac{w(1+\lambda k)}{(\lambda k)^\alpha}
+         \end{cases}
+        \end{equation}
+    There will be two cutoffs depending on whether the entrepreneur is constrained or not. For the unconstrained entrepreneur, the cut-off will only depend on the parameter $\alpha$ and the prevailing wage $w$, not on their capital endowment $k$.
+
+    \subsection{Incumbents}
+
+    An incumbent firm chooses to exit if the transitory shock is sufficiently bad such that:
+    \begin{equation}
+        \pi(z\theta, k; w) < w
+    \end{equation}
+    We can solve for this cut-off $z$ value to get:
+   \begin{equation} \label{eq:z-star}
+z^*(\theta, k, w) = \begin{cases}
+    z^*_u(\theta ; w) =  \frac{w}{\theta \alpha^\alpha (1-\alpha)^{1-\alpha}} \\
+    z^*_c(\theta, k; w) = \frac{w(1+\lambda k)}{\theta(\lambda k)^\alpha}    
+\end{cases} 
+\end{equation}
+    Notice that this $z^*$ is decreasing in $\theta$ in both cases. In other words, high-talent incumbents are less likely to exit than their low-talent counterparts. This \textit{Shock-Survival Effect} will lead to an endogenous selection of high-talent entrepreneurs over time.  The per-period probability of an incumbent exiting will then be given by:
+    \begin{equation}
+        d(\theta, k, w) = H(z^*(\theta, k, w))
+    \end{equation}    
+    

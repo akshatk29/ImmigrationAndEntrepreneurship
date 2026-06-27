@@ -1,0 +1,94 @@
+% ============================================================
+% Appendix: Proof of Proposition 1
+% ============================================================
+
+\section{Proof of Proposition ~\ref{prop:selgap}}
+\label{app:proof}
+
+\begin{proposition*}[Selection Gap Identifies Sub-Threshold Mass]
+Fix $w>0$ and $k>0$, and let $\theta^{*}\equiv\theta^{*}(k;w)$. Let
+$F_{n_{1}},F_{n_{2}}$ satisfy Assumption~\ref{assum:talent_dist} and admit the
+representation
+\begin{equation}
+F_{n_{j}}(\theta) = p_{j}\,G_{L}(\theta) + (1-p_{j})\,G_{H}(\theta),
+\qquad j\in\{1,2\},
+\label{eq:mixture1}
+\end{equation}
+where $G_{L}$ and $G_{H}$ are distributions supported on
+$[\underline{\theta},\theta^{*})$ and $[\theta^{*},\bar{\theta}]$
+respectively, common across groups, and $p_{1}>p_{2}$. Then:
+\begin{enumerate}
+    \item $\Delta(n_{1},k;w) > \Delta(n_{2},k;w)$.
+    \item $\Delta(n_{1},k;w) - \Delta(n_{2},k;w)$ is weakly increasing in $k$
+    and attains its maximum on $\{k:\theta^{c}(k;w)\geq\bar{\theta}\}$.
+\end{enumerate}
+\end{proposition*}
+
+\begin{proof}
+Write $\ell^{*}(\theta)\equiv\ell^{*}(\theta,k;w)$ and $p_{j}\equiv
+F_{n_{j}}(\theta^{*})$. Define
+\[
+\mu_{L} \equiv \mathbb{E}_{G_{L}}[\ell^{*}(\theta)],
+\qquad
+\mu_{H} \equiv \mathbb{E}_{G_{H}}[\ell^{*}(\theta)],
+\]
+which are common across groups under Equation \eqref{eq:mixture1}.
+
+From Equation \eqref{eq:age1_mean}
+and the mixture representation,
+\begin{equation}
+\mathbb{E}[\ell\mid n_{j},\mathrm{age}=1]
+= p_{j}\mu_{L} + (1-p_{j})\mu_{H}.
+\label{eq:age1}
+\end{equation}
+The age-2 expectation in Equation \eqref{eq:age2_mean} integrates only over
+$[\theta^{*},\bar{\theta}]$, so it depends on $F_{n_{j}}$ solely through the
+conditional distribution of $\theta$ above $\theta^{*}$, which
+equals $G_{H}$ for both groups. Hence
+\begin{equation}
+\mathbb{E}[\ell\mid n_{1},\mathrm{age}=2]
+= \mathbb{E}[\ell\mid n_{2},\mathrm{age}=2] \equiv M_{2}.
+\label{eq:age2-common}
+\end{equation}
+Combining,
+\begin{equation}
+\Delta(n_{j},k;w) = M_{2} - p_{j}\mu_{L} - (1-p_{j})\mu_{H}
+= (M_{2}-\mu_{H}) + p_{j}(\mu_{H}-\mu_{L}).
+\label{eq:delta}
+\end{equation}
+
+For the two groups we have,
+\begin{equation}
+\Delta(n_{1},k;w) - \Delta(n_{2},k;w)
+= (p_{1}-p_{2})(\mu_{H}-\mu_{L}).
+\label{eq:diff}
+\end{equation}
+The first factor is positive by hypothesis. For the second, $\ell^{*}(\theta)$
+is weakly increasing in $\theta$ and strictly increasing on
+$[\underline{\theta},\theta^{c}(k;w)]$; since
+$\theta^{c}(k;w)>\underline{\theta}$ and $G_{L},G_{H}$ are supported on
+disjoint intervals separated by $\theta^{*}$, we have $\mu_{H}>\mu_{L}$.
+Therefore $\Delta(n_{1},k;w)>\Delta(n_{2},k;w)$.
+
+From Labor Demand Equation \eqref{eq:labordemand},
+\[
+\ell^{*}(\theta,k;w) =
+\min\!\left\{\bigl(\alpha\theta/w\bigr)^{1/(1-\alpha)},\,\lambda k\right\},
+\]
+which is weakly increasing in $k$ pointwise. Integrating against $G_{H}$ and
+$G_{L}$:
+\begin{itemize}\itemsep0pt
+\item $\mu_{L}(k;w)$ is constant in $k$ on any range for which
+$\theta^{c}(k;w)\geq\theta^{*}$, since $G_{L}$ is supported strictly below
+$\theta^{*}$ and all such $\theta$ are unconstrained.
+\item $\mu_{H}(k;w)$ is weakly increasing in $k$, and constant on
+$\{k:\theta^{c}(k;w)\geq\bar{\theta}\}$.
+\end{itemize}
+Since $\theta^{*}(k;w)$ and therefore $p_{1}-p_{2}$ are also constant on
+$\{k:\theta^{c}(k;w)\geq\bar{\theta}\}$,\footnote{On this set both the
+unconstrained cutoff $\theta^{*}_{u}(w)$ and the constrained cutoff
+$\theta^{*}_{c}(k,w)$ collapse to the common value $\theta^{*}_{u}(w)$.} the
+product in Equation \eqref{eq:diff} is weakly increasing in $k$ and maximized on that
+set. Strict monotonicity holds whenever $\theta^{c}(k;w)<\bar{\theta}$ and
+$G_{H}$ places positive mass on $(\theta^{c}(k;w),\bar{\theta}]$.
+\end{proof}
